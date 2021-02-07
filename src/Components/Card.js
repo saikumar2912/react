@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
+
 const useStyles = makeStyles({
   root: {
-    minWidth: 275,
-    backgroundColor:"rgb(185, 106, 106);"
+    minWidth: 75,
+    backgroundColor:"bisque",
+    marginRight:750
   },
   bullet: {
     display: 'inline-block',
@@ -13,23 +15,30 @@ const useStyles = makeStyles({
   },
   title: {
     fontSize: 14,
-
   },
   pos: {
     marginBottom: 12,
   },
 });
-
-export default function SimpleCard(props) {
+export default function OutlinedCard(props) {
   const classes = useStyles();
   const bull = <span className={classes.bullet}>•</span>;
-
   return (
-    <Card className={classes.root}>
-      <b> name</b>{props.data.map(e=><div> {e.name}</div>)}
-      <b> username</b>{props.data.map(e=><div> {e.username}</div>)}
-      <b> website</b>{props.data.map(e=><div> {e.website}</div>)}
-      <b> email</b> {props.data.map(e=><div> {e.email}</div>)}
+    
+    <Card className={classes.root} variant="outlined">
+      {props.load == false ? props.data.map(e => <><p>{e.name}</p></>):props.data.map(e => <><p><b>Name: </b>{e.name}</p>
+    <p><b>PhoneNumber: </b>{e.phone}</p>
+    <p><b>UserName: </b>{e.username}</p>
+    <p><b>WebSite: </b>{e.website}</p>
+    <p><b>MailId: </b>{e.email}</p>
+    <p><b>Address:</b>
+          <p><b>(Street: </b>{e.address.street}
+           <b>, Suite: </b>{e.address.suite}
+          <b>, City: </b>{e.address.city}
+          <b>, ZipCode: </b>{e.address.zipcode}<b>)</b></p></p>
+    <p><b>CompanyName: </b>{e.company.name}</p>
+    </> )}
     </Card>
-  );
+    
+    );
 }

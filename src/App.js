@@ -12,16 +12,18 @@ useEffect(() => {
  ); 
      
     }, []);
+    const [LoadType,setLoadType] = useState(Boolean(false))
     console.log(Data)
 const search =(a)=>{
   const d=Data.filter(e=>e.name===a)
   
   setData(d)
+  setLoadType(Boolean(true))
 };
  return (
       <div>
         <Sample name={search}/>
-        <Card data={Data}/>
+        <Card data={Data}load={LoadType}/>
       </div>
     )
   }
